@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Forum</title>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body class="forumbg">
+    <header>
+        <div class="welcome">
+            {% if 'username' in session %}
+            <p>Witaj, {{ session['username'] }}!</p>
+            {% endif %}
+        </div>
+        <div class="nav-links-center">
+            <a href="{{ url_for('index') }}" class="btn">Strona Główna</a>
+            <a href="{{ url_for('search') }}" class="btn">Wyszukiwanie książek</a>
+            <a href="{{ url_for('recommendations') }}" class="btn">Rekomendacje</a>
+            <a href="{{ url_for('rankings') }}" class="btn">Ranking</a>
+            <a href="{{ url_for('forum') }}" class="btn">Forum</a>
+            <a href="{{ url_for('reader_panel') }}" class="btn">Panel czytelnika</a>
+            <a href="{{ url_for('admin') }}" class="btn">Panel admina</a>
+        </div>
+        <div class="nav-links-right">
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}" class="btn">Wyloguj się</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="btn">Zaloguj się</a>
+            <a href="{{ url_for('register') }}" class="btn">Zarejstruj się</a>
+            {% endif %}
+        </div>
+    </header>
+    <main>
+        <h1>Forum</h1>
+        {% if 'username' in session %}
+        <form method="POST" class="forum-form">
+            <input type="text" name="title" placeholder="Post title" required>
+            <textarea name="content" placeholder="Post content" required></textarea>
+            <button type="submit" class="btn">Create Post</button>
+        </form>
+        {% else %}
+        <p>Musisz być zalogowany aby móc tworzyć posty.</p>
+        {% endif %}
+        <ul class="post-list">
+            {% for post in posts %}
+            <li class="post-item">
+                <h3><a href="{{ url_for('post', post_id=post[0]) }}">{{ post[2] }}</a></h3>
+                <p>by {{ post[1] }}</p>
+                <p>{{ post[3] }}</p>
+                <p>
+                    Likes: {{ post[4] }}
+                    <a href="{{ url_for('like', post_id=post[0]) }}" class="btn">Like</a>
+                    <a href="{{ url_for('unlike', post_id=post[0]) }}" class="btn">Unlike</a>
+                    <a href="{{ url_for('post', post_id=post[0]) }}" class="btn">Comments</a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

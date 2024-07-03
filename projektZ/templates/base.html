@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteka Cyfrowa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="readerbg">
+    <header>
+        <div class="welcome">Witaj, {{ session['username'] }}</div>
+        
+            <div class="nav-links-center">
+                <a href="{{ url_for('index') }}" class="btn">Strona Główna</a>
+                <a href="{{ url_for('search') }}" class="btn">Wyszukiwanie książek</a>
+                <a href="{{ url_for('recommendations') }}" class="btn">Rekomendacje</a>
+                <a href="{{ url_for('rankings') }}" class="btn">Ranking</a>
+                <a href="{{ url_for('forum') }}" class="btn">Forum</a>
+                <a href="{{ url_for('reader_panel') }}" class="btn">Panel czytelnika</a>
+                <a href="{{ url_for('admin') }}" class="btn">Panel admina</a>
+            </div>
+            <div class="nav-links-right">
+                {% if 'username' in session %}
+                <a href="{{ url_for('logout') }}" class="btn">Wyloguj się</a>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="btn">Zaloguj się</a>
+                <a href="{{ url_for('register') }}" class="btn">Zarejstruj się</a>
+                {% endif %}
+            </ul>
+       
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

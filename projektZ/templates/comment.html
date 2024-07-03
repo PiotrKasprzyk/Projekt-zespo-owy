@@ -1,0 +1,29 @@
+<li class="comment-item">
+    <p><strong>{{ comment[1] }}</strong></p>
+    <p>{{ comment[2] }}</p>
+    <p>
+        Likes: {{ comment[3] }}
+        <a href="{{ url_for('like_comment_route', comment_id=comment[0]) }}" class="btn">Like</a>
+        <a href="{{ url_for('unlike_comment_route', comment_id=comment[0]) }}" class="btn">Unlike</a>
+        <a href="#" class="btn toggle-reply-form" data-comment-id="{{ comment[0] }}">Replies</a>
+    </p>
+    <div class="reply-form-container" id="reply-form-{{ comment[0] }}" style="display: none;">
+        {% if 'username' in session %}
+        <form method="POST" class="reply-form">
+            <textarea name="content" placeholder="Add a reply" required></textarea>
+            <input type="hidden" name="parent_id" value="{{ comment[0] }}">
+            <button type="submit" class="btn">Reply</button>
+        </form>
+        {% else %}
+        <p>You must be logged in to reply.</p>
+        {% endif %}
+    </div>
+    {% if comment|length > 5 %}
+    <ul class="reply-list">
+        {% for reply in comment[5] %}
+            {% set comment = reply %}
+            {% include 'comment.html' %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</li>

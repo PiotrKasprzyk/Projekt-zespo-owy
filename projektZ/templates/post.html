@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{{ post[2] }}</title>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body class="postbg">
+    <header>
+        <div class="welcome">
+            {% if 'username' in session %}
+            <p>Welcome, {{ session['username'] }}!</p>
+            {% endif %}
+        </div>
+        <div class="nav-links-center">
+            <a href="{{ url_for('index') }}" class="btn">Strona Główna</a>
+            <a href="{{ url_for('search') }}" class="btn">Wyszukiwanie książek</a>
+            <a href="{{ url_for('recommendations') }}" class="btn">Rekomendacje</a>
+            <a href="{{ url_for('rankings') }}" class="btn">Ranking</a>
+            <a href="{{ url_for('forum') }}" class="btn">Forum</a>
+            <a href="{{ url_for('reader_panel') }}" class="btn">Panel czytelnika</a>
+            <a href="{{ url_for('admin') }}" class="btn">Panel admina</a>
+        </div>
+        <div class="nav-links-right">
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}" class="btn">Wyloguj się</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="btn">Zaloguj się</a>
+            <a href="{{ url_for('register') }}" class="btn">Zarejstruj się</a>
+            {% endif %}
+        </div>
+    </header>
+    <main>
+        <h1>{{ post[2] }}</h1>
+        <p>by {{ post[1] }}</p>
+        <p>{{ post[3] }}</p>
+        <p>
+            Likes: {{ post[4] }}
+            <a href="{{ url_for('like', post_id=post[0]) }}" class="btn">Like</a>
+            <a href="{{ url_for('unlike', post_id=post[0]) }}" class="btn">Unlike</a>
+        </p>
+        <h2>Comments</h2>
+        {% if 'username' in session %}
+        <form method="POST" class="comment-form">
+            <textarea name="content" placeholder="Add a comment" required></textarea>
+            <button type="submit" class="btn">Comment</button>
+        </form>
+        {% else %}
+        <p>You must be logged in to comment.</p>
+        {% endif %}
+        <ul class="comment-list">
+            {% for comment in comments %}
+                {% include 'comment.html' %}
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>

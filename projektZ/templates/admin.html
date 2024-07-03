@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Panel Admina</title>
+</head>
+<body class="adminbg">
+    <header>
+        <div class="welcome">
+            {% if 'username' in session %}
+            <p>Witaj, {{ session['username'] }}!</p>
+            {% endif %}
+        </div>
+        <div class="nav-links-center">
+            <a href="{{ url_for('index') }}" class="btn">Strona Główna</a>
+            <a href="{{ url_for('search') }}" class="btn">Wyszukiwanie książek</a>
+            <a href="{{ url_for('recommendations') }}" class="btn">Rekomendacje</a>
+            <a href="{{ url_for('rankings') }}" class="btn">Ranking</a>
+            <a href="{{ url_for('forum') }}" class="btn">Forum</a>
+            <a href="{{ url_for('reader_panel') }}" class="btn">Panel czytelnika</a>
+            <a href="{{ url_for('admin') }}" class="btn">Panel admina</a>
+        </div>
+        <div class="nav-links-right">
+            {% if 'username' in session %}
+            <a href="{{ url_for('logout') }}" class="btn">Wyloguj się</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="btn">Zaloguj się</a>
+            <a href="{{ url_for('register') }}" class="btn">Zarejstruj się</a>
+            {% endif %}
+        </div>
+    </header>
+    <main class="main-content admin-panel">
+        <h1>Panel Admina</h1>
+
+        <div class="admin-actions">
+            <a href="{{ url_for('add_book_route') }}" class="btn add-book-btn">Dodaj Książkę</a>
+        </div>
+
+        <h2>Książki istniejące</h2>
+        <ul class="book-list">
+            {% for book in books %}
+            <li class="book-item">
+                <span>{{ book[1] }} by {{ book[2] }}</span>
+                <form action="{{ url_for('delete_book_route', book_id=book[0]) }}" method="POST">
+                    <button type="submit" class="btn delete-btn">Usuń</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </main>
+</body>
+</html>

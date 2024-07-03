@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Ranking książek</h1>
+    <div class="ranking-list">
+        {% for book in books %}
+        <div class="book-item1">
+            <h2>{{ book[1] }}</h2>
+            <p><strong>Autor:</strong> {{ book[2] }}</p>
+            <p><strong>Gatunek:</strong> {{ book[3] }}</p>
+            <p><strong>Kategoria:</strong> {{ book[7] }}</p>
+            <p><strong>Data publikacji:</strong> {{ book[4] }}</p>
+            <p><strong>Opis:</strong> {{ book[5] }}</p>
+            <p><strong>Ocena:</strong> {{ book[6] }}</p>
+            <a href="{{ url_for('reviews', book_id=book[0]) }}">Zobacz opinie</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

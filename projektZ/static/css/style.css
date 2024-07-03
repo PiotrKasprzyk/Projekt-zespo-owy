@@ -1,0 +1,410 @@
+/* Ogólne stylizacje */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+     background-color: #ffc40081;
+    
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.welcome {
+    flex: 0;
+    text-align: left;
+}
+
+.nav-links-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.nav-links-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links-center a, .nav-links-right a{
+    color: white;
+    text-decoration: none;
+    padding: 10px 30px;
+    background-color: #ffc40081;
+
+    border-radius: 2px;
+    transition: background-color 0.3s;
+}
+
+.nav-links-center a:hover, .nav-links-right a:hover {
+    background-color: #ffc40033;
+}
+
+main {
+    padding: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(182, 140, 1, 0.61);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.post-list {
+    list-style-type: none;
+    padding: 50px;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input, button, textarea {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+button {
+    background-color: #48ff0085;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.book-list, .post-list, .comment-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.book-item, .post-item, .comment-item {
+    background-color: #ffc40056;
+    border: 1px solid #ffc4008f;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.book-item h3, .post-item h3, .comment-item p {
+    margin: 0;
+    padding: 0;
+}
+
+.messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.success {
+    color: green;
+}
+
+.danger {
+    color: red;
+}
+
+.forumbg, .homebg, .postbg, .bookbg, .rankingbg, .recencjabg, .rekomendacjabg, .loginbg, .registerbg, .adminbg, .readerbg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh; 
+    color: #000000; 
+    text-shadow: 0.1em 0.1em 0.2em rgb(255, 0, 0);
+    font-size: 1em;
+    font-weight: bold;
+    align-items: center;
+    padding: 20px; 
+}
+.forumbg {
+    background-image: url('/static/images/forum.webp');
+}
+.homebg {
+    background-image: url('/static/images/home.webp');
+}
+.postbg {
+    background-image: url('/static/images/post.webp');
+}
+.bookbg {
+    background-image: url('/static/images/book.webp');
+}
+.rankingbg {
+    background-image: url('/static/images/ranking.webp');
+}
+.recencjabg {
+    background-image: url('/static/images/recencja.webp');
+}
+.rekomendacjabg {
+    background-image: url('/static/images/rekomendacja.webp');
+}
+.loginbg {
+    background-image: url('/static/images/logowanie.webp');
+}
+.registerbg {
+    background-image: url('/static/images/rejestracja.webp');
+}
+.adminbg {
+    background-image: url('/static/images/admin.webp');
+}
+.readerbg {
+    background-image: url('/static/images/reader.webp');
+}
+
+.main-content {
+    background-color: #ffc40056;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+footer.contact-info {
+    background-color: #ffc40056;
+    padding: 2em;
+    text-align: center;
+    text-shadow: 0.1em 0.1em 0.2em rgb(255, 0, 0);
+    margin-top: 100px; 
+    width: 100%; 
+    font-size: 1.5em;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info ul li {
+    margin: 0.5em 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.contact-form label {
+    color: #fff;
+    text-align: left;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.contact-form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    color: #fff;
+}
+
+.flashes .success {
+    background-color: #4caf4fa2;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.flashes .danger {
+    background-color: #f44336;
+    text-shadow: 0.1em 0.1em 0.2em rgb(0, 0, 0);
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-borrow-btn {
+    background-color: #00ff15bb;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.container {
+    background-color: #ffc40017;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+}
+
+.panel-section {
+    margin-bottom: 20px;
+}
+
+.panel-section h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.borrowed-books {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffc40057;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.borrowed-books h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.borrowed-books ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.borrowed-books li {
+    padding: 10px;
+    border-bottom: 1px solid #ff0000;
+}
+
+.borrowed-books li:last-child {
+    border-bottom: none;
+}
+
+.borrowed-books strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.borrowed-books button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.borrowed-books button:hover {
+    background-color: #c9302c;
+}
+
+.user-info {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffc40056;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.book-item {
+    background-color: #ffc40056;
+    border: 1px solid #ffc40081;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book-item h2 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.book-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.book-item p strong {
+    display: inline-block;
+    color: #333;
+}
+
+.book-item a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.book-item a:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.book-item1 {
+    background-color: #ffc40056;
+    border: 5px solid #ffc400a1;
+    font-size: 1,5em;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
